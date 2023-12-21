@@ -2,7 +2,7 @@
 
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = () => { 
     const navli = <>
         <li ><NavLink className='navstyle2' to={'/'}>Home</NavLink></li>
         <li><NavLink className='navstyle2' to={'/dashboard'}>Dashboard</NavLink></li>
