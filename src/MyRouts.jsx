@@ -6,7 +6,10 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import MainLayout from './MainLayout/MainLayout'
 import Register from "./Authentications/Register/Register";
 import LogIn from "./Authentications/LogIn/Login";
-import PrivateRouts from "./assets/PrivateRouts/PrivateRouts";
+import PrivateRouts from "./PrivateRouts/PrivateRouts";
+import CreateTask from "./Components/Dashboard/CreateTask/CreateTask";
+import SeePreviousTask from "./Components/Dashboard/SeePreviousTask/SeePreviousTask";
+import HandleTask from "./Components/Dashboard/HandleTask/HandleTask";
 const MyRouts = createBrowserRouter([
     {
         path: "/",
@@ -17,8 +20,22 @@ const MyRouts = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path:'/dashboard',
-                element: <PrivateRouts><Dashboard></Dashboard></PrivateRouts>
+                path: '/dashboard',
+                element: <PrivateRouts><Dashboard></Dashboard></PrivateRouts>,
+                children: [
+                    {
+                        path: 'createtask',
+                        element: <CreateTask></CreateTask>
+                    },
+                    {
+                        path: 'previoustask',
+                        element: <SeePreviousTask></SeePreviousTask>
+                    },
+                    {
+                        path: 'handletask',
+                        element: <HandleTask></HandleTask>
+                    },
+                ]
             },
             {
                 path: '/register',
@@ -27,7 +44,7 @@ const MyRouts = createBrowserRouter([
             {
                 path: '/login',
                 element: <LogIn></LogIn>
-            }
+            },
         ]
     },
 ]);

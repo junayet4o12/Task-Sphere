@@ -58,10 +58,7 @@ const LogIn = () => {
     }
     const handlegooglelogin = () => {
         seterr('')
-        loginwithgoogle(location?.state?.from?.pathname)
-            .then(() => {
-
-            })
+        loginwithgoogle()
     }
     return (
         <div >
