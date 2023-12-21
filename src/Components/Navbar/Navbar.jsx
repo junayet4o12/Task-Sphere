@@ -1,8 +1,10 @@
 // import React from 'react';
 
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
-const Navbar = () => { 
+const Navbar = () => {
+    const { user, logOut } = useAuth()
     const navli = <>
         <li ><NavLink className='navstyle2' to={'/'}>Home</NavLink></li>
         <li><NavLink className='navstyle2' to={'/dashboard'}>Dashboard</NavLink></li>
@@ -29,7 +31,11 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className=" btn  hover:text-black transition-all duration-200 ease-in-out uppercase bg-transparent hover:bg-transparent border-blue-400 border-2 rounded-lg hover:rounded-3xl hover:border-blue-400 w-[100px]">Login</a>
+                    {
+                        user?.email ? <button onClick={() => logOut()} className=" btn  hover:text-black transition-all duration-200 ease-in-out uppercase bg-transparent hover:bg-transparent border-blue-400 border-2 rounded-lg hover:rounded-3xl hover:border-blue-400 w-[100px]">LogOut</button> : <Link to={'/login'}>
+                            <button className=" btn  hover:text-black transition-all duration-200 ease-in-out uppercase bg-transparent hover:bg-transparent border-blue-400 border-2 rounded-lg hover:rounded-3xl hover:border-blue-400 w-[100px]">Login</button>
+                        </Link>
+                    }
                 </div>
             </div>
         </div>

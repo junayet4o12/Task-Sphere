@@ -30,6 +30,7 @@ const Register = () => {
     const axiosPublic = useAxiosPublic();
     const [err, seterr] = useState('')
     const { register, handleSubmit, watch, reset, formState: { errors }, } = useForm()
+    const inputStyle = 'w-full  sm:w-[450px]  bg-gray-50 p-3 px-10 rounded-lg input input-bordered input-info'
     const onSubmit = async (data) => {
         seterr('')
         const image = { image: data?.image[0] }
@@ -114,7 +115,7 @@ const Register = () => {
                                 <p className="px-2 pb-1 text-sm">Write your name</p>
                                 <div className="relative w-full sm:w-[450px]">
 
-                                    <input name="name" {...register("name", { required: true })} className="w-full  sm:w-[450px]  bg-gray-200 p-3 px-10 rounded-lg " type="text" placeholder="Name" />
+                                    <input name="name" {...register("name", { required: true })} className={inputStyle} type="text" placeholder="Name" />
                                     {errors.name && <span className='text-red-500'>Name is required</span>}
                                     <p className='text-xl absolute top-3.5 left-3 '><MdDriveFileRenameOutline></MdDriveFileRenameOutline></p>
                                 </div>
@@ -122,7 +123,7 @@ const Register = () => {
                             <div>
                                 <p className="px-2 pb-1 text-sm">Choose your profile pic</p>
                                 <div className="relative w-full sm:w-[450px]">
-                                    <input name="image" {...register("image", { required: true })} className="w-full  sm:w-[450px]  bg-gray-200 p-3 px-10 rounded-lg " type="file" placeholder="Image" />
+                                    <input name="image" {...register("image", { required: true })} className={inputStyle} type="file" placeholder="Image" />
                                     {errors.image && <span className='text-red-500'>Image is required</span>}
                                     <p className='text-xl absolute top-3.5 left-3 '><MdOutlineInsertPhoto></MdOutlineInsertPhoto ></p>
                                 </div>
@@ -130,7 +131,7 @@ const Register = () => {
                             <div>
                                 <p className="px-2 pb-1 text-sm">Write your email</p>
                                 <div className="relative w-full sm:w-[450px]">
-                                    <input required name="email" {...register("email", { required: true })} className="w-full  sm:w-[450px]  bg-gray-200 p-3 px-10 rounded-lg " type="email" placeholder="email" />
+                                    <input required name="email" {...register("email", { required: true })} className={inputStyle} type="email" placeholder="email" />
                                     {errors.email && <span className='text-red-500'>Email is required</span>}
                                     <p className='text-xl absolute top-3.5 left-3 '><MdMailOutline></MdMailOutline></p>
                                 </div>
@@ -146,7 +147,7 @@ const Register = () => {
                                             minLength: 8,
                                             maxLength: 20,
                                             pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/
-                                        })} className="w-full  sm:w-[450px]  bg-gray-200 p-3 px-10 rounded-lg " placeholder="password" />
+                                        })} className={inputStyle} placeholder="password" />
                                     <p className='text-xl absolute top-3 left-3 '><RiLockPasswordLine></RiLockPasswordLine></p>
                                     <p onClick={() => (setshowpass(!showpass))} className={`absolute top-2 right-0 mr-2 cursor-pointer text-lg  p-1`}>{showpass ? <BsEye></BsEye> : <BsEyeSlash></BsEyeSlash>}</p>
                                     {errors?.password?.type === 'required' && <span className='text-red-500'>Password invalid</span>}
@@ -164,11 +165,11 @@ const Register = () => {
                                 </div>
                             </div>
                             <div className='w-full flex flex-col  justify-center items-center gap-2'>
-                                <button type='submit' className='btn bg-gradient-to-r  w-full  sm:w-[450px]  text-white font-bold rounded-lg border-none bg-[#36A2C1] hover:bg-[#29859e] login'><MdLogin></MdLogin> Register</button>
+                                <button type='submit' className='btn w-full transition-all duration-200  ease-in-out uppercase bg-transparent border-blue-400 border-2 rounded-lg  hover:bg-transparent hover:rounded-3xl hover:border-blue-400'><MdLogin></MdLogin> Register</button>
                                 <p>Or</p>
                                 <p
                                     onClick={handlegooglelogin}
-                                    className='btn   bg-[#36a3c1] text-white  font-bold text-sm hover:bg-[#2b859e] border-none hover:text-white login'>Log in with <span className="text-lg"><FcGoogle></FcGoogle></span></p>
+                                    className='btn transition-all duration-200  ease-in-out uppercase bg-transparent border-blue-400 border-2 rounded-lg  hover:bg-transparent hover:rounded-3xl hover:border-blue-400'>Log in with <span className="text-lg"><FcGoogle></FcGoogle></span></p>
                             </div>
                         </div>
 

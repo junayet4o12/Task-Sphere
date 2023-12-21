@@ -5,6 +5,8 @@ import Home from "./Home/Home";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import MainLayout from './MainLayout/MainLayout'
 import Register from "./Authentications/Register/Register";
+import LogIn from "./Authentications/LogIn/Login";
+import PrivateRouts from "./assets/PrivateRouts/PrivateRouts";
 const MyRouts = createBrowserRouter([
     {
         path: "/",
@@ -16,11 +18,15 @@ const MyRouts = createBrowserRouter([
             },
             {
                 path:'/dashboard',
-                element: <Dashboard></Dashboard>
+                element: <PrivateRouts><Dashboard></Dashboard></PrivateRouts>
             },
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/login',
+                element: <LogIn></LogIn>
             }
         ]
     },
