@@ -6,13 +6,25 @@ import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 const EditTask = () => {
-    const {id} = useParams()
+    const { id } = useParams()
     const { user } = useAuth()
     const axiosPublic = useAxiosPublic()
     const [err, seterr] = useState('')
     const inputStyle = 'w-full    bg-gray-50 p-3 px-10 rounded-lg input input-bordered input-info'
     const { register, handleSubmit, watch, reset, formState: { errors }, } = useForm()
+    const { data: singletask, isLoading: singletaskLoading, refetch } = useQuery({
+        queryKey: [`task ${id}`, id],
+        queryFn: async () => {
+
+            const res = await axiosPublic.get(`/singletask/${id}`)
+            return res?.data
+        }
+    })
+    if (singletaskLoading) {
+        return ''
+    }
     const onSubmit = async (data) => {
         seterr('')
         const title = data?.title;
@@ -20,25 +32,23 @@ const EditTask = () => {
         const priority = data?.priority;
         const description = data?.description;
         const task = {
-            creator: user?.email,
             title,
             deadline,
             priority,
-            description,
-            type: 'todo'
+            description
         }
         console.log(task);
-        axiosPublic.put(`/fulltasks/${id}`, task)
+        axiosPublic.put(`/singletaskupdate/${id}`, task)
             .then(res => {
                 console.log(res?.data);
-                if (res?.data?.insertedId) {
+                if (res?.data?.modifiedCount > 0) {
                     Swal.fire({
                         icon: "success",
                         title: "Your work has been saved",
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    reset()
+                    refetch()
                 }
             })
             .catch(err => {
@@ -68,7 +78,7 @@ const EditTask = () => {
                         <div className="w-full max-w-[550px] ">
                             <p className="px-2 pb-1 text-sm">Task Title</p>
                             <div className="relative  w-full ">
-                                <input required name="title" {...register("title", { required: true })} className={inputStyle} type="text" placeholder="Title" />
+                                <input defaultValue={singletask?.title} required name="title" {...register("title", { required: true })} className={inputStyle} type="text" placeholder="Title" />
                                 {errors.title && <span className='text-red-500 text-sm'>Title is required</span>}
 
                             </div>
@@ -76,7 +86,7 @@ const EditTask = () => {
                         <div className="w-full max-w-[550px]">
                             <p className="px-2 pb-1 text-sm">Task deadline</p>
                             <div className="relative w-full">
-                                <input required name="deadline" {...register("deadline", { required: true })} className={inputStyle} type="date" placeholder="Deadline" />
+                                <input defaultValue={singletask?.deadline} required name="deadline" {...register("deadline", { required: true })} className={inputStyle} type="date" placeholder="Deadline" />
                                 {errors.deadline && <span className='text-red-500 text-sm'>Deadline is required</span>}
 
                             </div>
@@ -84,7 +94,7 @@ const EditTask = () => {
                         <div className="w-full max-w-[550px]">
                             <p className="px-2 pb-1 text-sm">Task priority</p>
                             <div className="relative w-full">
-                                <select required name="priority" {...register("priority", { required: true })} className={`${inputStyle} select select-info`} type="text" placeholder="Priority" >
+                                <select defaultValue={singletask?.priority} required name="priority" {...register("priority", { required: true })} className={`${inputStyle} select select-info`} type="text" placeholder="Priority" >
                                     <option disabled selected value='' >Select Priority</option>
                                     {
                                         targetaudience?.map((audience) => <option key={audience} value={audience}> {audience}</option>)
@@ -97,7 +107,8 @@ const EditTask = () => {
                         <div className="w-full max-w-[550px]">
                             <p className="px-2 pb-1 text-sm">Task Description</p>
                             <div className="relative w-full">
-                                <textarea required name="description" {...register("description", { required: true })} className={`${inputStyle} h-40`} type="text" placeholder="Description"></textarea>
+                                <textarea required
+                                    defaultValue={singletask?.description} name="description" {...register("description", { required: true })} className={`${inputStyle} h-40`} type="text" placeholder="Description"></textarea>
                                 {errors.description && <span className='text-red-500 text-sm'>Description is required</span>}
 
                             </div>
