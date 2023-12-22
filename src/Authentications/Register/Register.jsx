@@ -54,8 +54,7 @@ const Register = () => {
                         const userInfo = {
                             name: data.name,
                             email: data.email,
-                            contactNumber: '',
-                            age: '',
+                            image: imgurl
 
 
                         }
