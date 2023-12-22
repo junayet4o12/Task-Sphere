@@ -30,7 +30,7 @@ const Register = () => {
     const axiosPublic = useAxiosPublic();
     const [err, seterr] = useState('')
     const { register, handleSubmit, watch, reset, formState: { errors }, } = useForm()
-    const inputStyle = 'w-full  sm:w-[450px]  bg-gray-50 p-3 px-10 rounded-lg input input-bordered input-info'
+    const inputStyle = 'w-full max-w-[280px] sm:max-w-full  sm:w-[450px]  bg-gray-50 p-3 px-10 rounded-lg input input-bordered input-info'
     const onSubmit = async (data) => {
         seterr('')
         const image = { image: data?.image[0] }
