@@ -10,6 +10,7 @@ import PrivateRouts from "./PrivateRouts/PrivateRouts";
 import CreateTask from "./Components/Dashboard/CreateTask/CreateTask";
 import SeePreviousTask from "./Components/Dashboard/SeePreviousTask/SeePreviousTask";
 import HandleTask from "./Components/Dashboard/HandleTask/HandleTask";
+import EditTask from "./Components/Dashboard/EditTask/EditTask";
 const MyRouts = createBrowserRouter([
     {
         path: "/",
@@ -35,6 +36,10 @@ const MyRouts = createBrowserRouter([
                         path: 'handletask',
                         element: <HandleTask></HandleTask>
                     },
+                    {
+                        path: '/dashboard/edit/:id',
+                        element: <EditTask> </EditTask>
+                    }
                 ]
             },
             {

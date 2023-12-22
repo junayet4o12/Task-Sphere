@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Authentications/AuthProviders";
 
  
- 
+  
  
 const useAuth = () => {
     const givingAuth = useContext(AuthContext)

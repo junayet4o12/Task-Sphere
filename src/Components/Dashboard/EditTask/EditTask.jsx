@@ -2,11 +2,12 @@
 import { motion } from "framer-motion"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import Swal from "sweetalert2";
-
-const CreateTask = () => {
+import { useParams } from "react-router-dom";
+const EditTask = () => {
+    const {id} = useParams()
     const { user } = useAuth()
     const axiosPublic = useAxiosPublic()
     const [err, seterr] = useState('')
@@ -27,7 +28,7 @@ const CreateTask = () => {
             type: 'todo'
         }
         console.log(task);
-        axiosPublic.post('/tasks', task)
+        axiosPublic.put(`/fulltasks/${id}`, task)
             .then(res => {
                 console.log(res?.data);
                 if (res?.data?.insertedId) {
@@ -115,4 +116,4 @@ const CreateTask = () => {
     );
 };
 
-export default CreateTask;
+export default EditTask;

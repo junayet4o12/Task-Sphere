@@ -5,8 +5,7 @@ import unknownUser from '../../assets/unknownUser.png'
 import { NavLink, Outlet } from "react-router-dom";
 const Dashboard = () => {
     const { user } = useAuth()
-    console.log(user?.photoURL
-    );
+    
     return (
         <div>
             <div className="flex">
@@ -14,7 +13,7 @@ const Dashboard = () => {
                 <div className="w-[190px] sm:w-[210px] md:w-[220px] lg:w-[230px] min-h-screen  bg-[#3498db] pt-3 text-white">
 
                     <div className="flex gap-3 items-center">
-                        <div className="w-10 rounded-full overflow-hidden">
+                        <div className="w-10 h-10  rounded-full overflow-hidden">
                             <img src={user?.photoURL ? user?.photoURL : unknownUser} />
 
                         </div>
@@ -26,7 +25,7 @@ const Dashboard = () => {
 
                         <li><NavLink className={'dashboardNavlinkStyle'} to={'/dashboard/previoustask'}>See Previous Tasks</NavLink></li>
 
-                        <li><NavLink className={'dashboardNavlinkStyle'} to={'/dashboard/handletask'}>Handle Task</NavLink></li>
+                        <li><NavLink className={'dashboardNavlinkStyle'} to={'/dashboard/handletask'}>Manage Task</NavLink></li>
 
                     </ul>
                 </div>
