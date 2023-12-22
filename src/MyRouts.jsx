@@ -12,6 +12,7 @@ import SeePreviousTask from "./Components/Dashboard/SeePreviousTask/SeePreviousT
 import HandleTask from "./Components/Dashboard/HandleTask/HandleTask";
 import EditTask from "./Components/Dashboard/EditTask/EditTask";
 import Clients from "./Components/Clients/Clients";
+import Profile from "./Components/Profile/Profile";
 const MyRouts = createBrowserRouter([
     {
         path: "/",
@@ -46,6 +47,10 @@ const MyRouts = createBrowserRouter([
             {
                 path: '/clients',
                 element: <Clients></Clients>
+            },
+            {
+                path: '/Profile',
+                element: <PrivateRouts><Profile></Profile></PrivateRouts>
             },
             {
                 path: '/register',

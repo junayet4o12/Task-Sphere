@@ -9,7 +9,7 @@ const ClientCard = ({ client }) => {
                 <figure><img className=" h-full" src={img} alt="Shoes" /></figure>
                 <div className="card-body">
                     <h2 className="card-title text-4xl">{name}</h2>
-                    <p className="text-lg font-medium">{description}</p>
+                    <p className="text-base font-medium">{description}</p>
                     
                 </div>
             </div>

@@ -7,9 +7,15 @@ const Navbar = () => {
     const { user, logOut } = useAuth()
     const navli = <>
         <li ><NavLink className='navstyle2' to={'/'}>Home</NavLink></li>
-        <li><NavLink className='navstyle2' to={'/dashboard'}>Dashboard</NavLink></li>
+        {
+            user ? <>
+                <li><NavLink className='navstyle2' to={'/dashboard'}>Dashboard</NavLink></li>
+                <li><NavLink className='navstyle2' to={'/profile'}>Profile</NavLink></li>
+            </> : ''
+        }
         <li><NavLink className='navstyle2' to={'/clients'}>Our Clients</NavLink></li>
-        <li><NavLink className='navstyle2' to={'/profile'}>Profile</NavLink></li>
+
+
     </>
     return (
         <div>

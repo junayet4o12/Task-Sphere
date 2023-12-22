@@ -11,13 +11,15 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
 const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <HelmetProvider>
-    <QueryClientProvider client={queryClient}>
-  <AuthProviders>
-    <React.StrictMode>
-      <RouterProvider router={MyRouts} />
-    </React.StrictMode>
-  </AuthProviders>
-  </QueryClientProvider>
-  </HelmetProvider>,
+  <div className='max-w-7xl mx-auto'>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthProviders>
+          <React.StrictMode>
+            <RouterProvider router={MyRouts} />
+          </React.StrictMode>
+        </AuthProviders>
+      </QueryClientProvider>
+    </HelmetProvider>
+  </div>,
 )
