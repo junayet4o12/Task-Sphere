@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 const Navbar = () => {
     const { user, logOut } = useAuth()
     const navli = <>
-        <li ><NavLink className='navstyle2' to={'/'}>Home</NavLink></li>
+        <li><NavLink className='navstyle2' to={'/'}>Home</NavLink></li>
         {
             user ? <>
                 <li><NavLink className='navstyle2' to={'/dashboard'}>Dashboard</NavLink></li>

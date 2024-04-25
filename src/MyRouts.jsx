@@ -13,6 +13,7 @@ import HandleTask from "./Components/Dashboard/HandleTask/HandleTask";
 import EditTask from "./Components/Dashboard/EditTask/EditTask";
 import Clients from "./Components/Clients/Clients";
 import Profile from "./Components/Profile/Profile";
+import AllTasks from "./Components/Dashboard/AllTasks/AllTasks";
 const MyRouts = createBrowserRouter([
     {
         path: "/",
@@ -22,28 +23,7 @@ const MyRouts = createBrowserRouter([
                 path: '/',
                 element: <Home></Home>
             },
-            {
-                path: '/dashboard',
-                element: <PrivateRouts><Dashboard></Dashboard></PrivateRouts>,
-                children: [
-                    {
-                        path: 'createtask',
-                        element: <CreateTask></CreateTask>
-                    },
-                    {
-                        path: 'previoustask',
-                        element: <SeePreviousTask></SeePreviousTask>
-                    },
-                    {
-                        path: 'handletask',
-                        element: <HandleTask></HandleTask>
-                    },
-                    {
-                        path: '/dashboard/edit/:id',
-                        element: <EditTask> </EditTask>
-                    }
-                ]
-            },
+           
             {
                 path: '/clients',
                 element: <Clients></Clients>
@@ -60,6 +40,32 @@ const MyRouts = createBrowserRouter([
                 path: '/login',
                 element: <LogIn></LogIn>
             },
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRouts><Dashboard></Dashboard></PrivateRouts>,
+        children: [
+            {
+                path: 'allTasks',
+                element: <AllTasks/>
+            },
+            {
+                path: 'createTask',
+                element: <CreateTask></CreateTask>
+            },
+            {
+                path: 'previousTask',
+                element: <SeePreviousTask></SeePreviousTask>
+            },
+            {
+                path: 'handleTask',
+                element: <HandleTask></HandleTask>
+            },
+            {
+                path: '/dashboard/edit/:id',
+                element: <EditTask> </EditTask>
+            }
         ]
     },
 ]);
