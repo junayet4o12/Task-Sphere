@@ -24,9 +24,9 @@ const HandleTask = () => {
     if (taskLoading) {
         return ''
     }
-    const todoTasks = tasks?.filter(task => task?.type === 'todo')
-    const onGoingTasks = tasks?.filter(task => task?.type === 'ongoing')
-    const completedTasks = tasks?.filter(task => task?.type === 'completed')
+    const todoTasks = tasks?.filter(task => task?.type === 'todo') || []
+    const onGoingTasks = tasks?.filter(task => task?.type === 'ongoing') || []
+    const completedTasks = tasks?.filter(task => task?.type === 'completed') || []
     const handleRegister = (e, id) => {
         e?.dataTransfer?.setData('todoId', id)
         console.log(id, e?.dataTransfer?.setData('todoId', id));
@@ -34,6 +34,17 @@ const HandleTask = () => {
     const handleDragOver = (e) => {
         e?.preventDefault()
         console.log('dragging');
+    }
+    const handleDropTodo = (e) => {
+        e.preventDefault()
+        const draggedItem = e.dataTransfer.getData('todoId');
+
+        console.log(draggedItem);
+        axiosPublic.put(`/tasksTodo/${draggedItem}`)
+            .then(res => {
+                console.log(res?.data);
+                refetch()
+            })
     }
     const handleDropInOngoing = (e) => {
         e.preventDefault()
@@ -78,7 +89,7 @@ const HandleTask = () => {
 
     }
     const handleEdit = (id) => {
-      navigate(`/dashboard/edit/${id}`)  
+        navigate(`/dashboard/edit/${id}`)
     }
     return (
         <div className="">
@@ -88,6 +99,13 @@ const HandleTask = () => {
                     <p className="bg-blue-100 text-lg font-bold text-center uppercase">to do</p>
                     <hr className="border-black" />
                     <div className="space-y-5 px-2 py-2 ">
+                        <div
+                            onDragOver={(e) => handleDragOver(e)}
+                            onDrop={(e) => handleDropTodo(e)}
+                            className="transition-all duration-200  p-2 text-sm font-bold ease-in-out uppercase bg-transparent border-blue-400 border-2 rounded-lg  hover:bg-transparent hover:rounded-3xl hover:border-blue-400 flex flex-col justify-center items-center gap-2 m-5 min-w-[150px]">
+                            <img src={dragLogo} className="w-20  h-20" alt="" />
+                            <p className="text-lg text-center">Drag And Drop Here</p>
+                        </div>
                         {
                             todoTasks?.map((task, idx) => <div key={task?._id} draggable
                                 onDragStart={(e) => handleRegister(e, task?._id)} className="transition-all duration-200  p-2 text-sm font-bold ease-in-out uppercase bg-transparent border-blue-400 border-2 rounded-lg  hover:bg-transparent hover:rounded-3xl hover:border-blue-400 ">
@@ -113,7 +131,7 @@ const HandleTask = () => {
                         {
                             !todoTasks?.length < 1 ? '' : <div className="flex flex-col justify-center items-center gap-5  py-10">
                                 <p className="text-8xl"><TbMoodEmpty></TbMoodEmpty></p>
-                                <p className="text-4xl font-bold text-center">No Data Found</p>
+                                <p className="text-4xl font-bold text-center">No Task Found!</p>
                             </div>
                         }
                     </div>
@@ -127,6 +145,7 @@ const HandleTask = () => {
                         className="transition-all duration-200  p-2 text-sm font-bold ease-in-out uppercase bg-transparent border-blue-400 border-2 rounded-lg  hover:bg-transparent hover:rounded-3xl hover:border-blue-400 flex flex-col justify-center items-center gap-2 m-5 min-w-[150px]">
                         <img src={dragLogo} className="w-20  h-20" alt="" />
                         <p className="text-lg text-center">Drag And Drop Here</p>
+                        
                     </div>
                     <div
                         className="space-y-5 px-2 py-2 min-h-full">
@@ -152,7 +171,14 @@ const HandleTask = () => {
                                 </div>
                             </div>)
                         }
+                        {
+                            onGoingTasks?.length < 1 ? <div className="flex flex-col justify-center items-center gap-5  py-10">
+                            <p className="text-8xl"><TbMoodEmpty></TbMoodEmpty></p>
+                            <p className="text-4xl font-bold text-center">No Task Found!</p>
+                        </div> : ''
+                        }
                     </div>
+                    
                 </div>
                 <div className="flex-1 max-w-sm mx-auto">
                     <p className="bg-blue-100 text-lg font-bold text-center uppercase ">Completed</p>
@@ -167,7 +193,8 @@ const HandleTask = () => {
                     <div
                         className="space-y-5 px-2 py-2 min-h-full">
                         {
-                            completedTasks?.map((task, idx) => <div className="transition-all duration-200  p-2 text-sm font-bold ease-in-out uppercase bg-transparent border-blue-400 border-2 rounded-lg  hover:bg-transparent hover:rounded-3xl hover:border-blue-400 " key={task?._id}>
+                            completedTasks?.map((task, idx) => <div className="transition-all duration-200  p-2 text-sm font-bold ease-in-out uppercase bg-transparent border-blue-400 border-2 rounded-lg  hover:bg-transparent hover:rounded-3xl hover:border-blue-400 " key={task?._id} draggable
+                            onDragStart={(e) => handleRegister(e, task?._id)}>
                                 <div className="flex justify-between px-2  ">
                                     <button onClick={() => handleEdit(task?._id)} title="Edit Task" className="text-xl font-bold mb-1 hover:text-blue-500 btn btn-xs  bg-transparent hover:bg-transparent border-none hover:border-none"><LuClipboardEdit></LuClipboardEdit></button>
                                     <button onClick={() => handleDelete(task?._id)} title="Delete Task" className="text-base font-bold mb-1  border-[1.5px]  px-2 rounded-sm border-black hover:rounded-md hover:border-black  transition-all duration-200 btn btn-xs hover:bg-transparent" >X</button>
@@ -186,6 +213,12 @@ const HandleTask = () => {
                                     </div>
                                 </div>
                             </div>)
+                        }
+                         {
+                            completedTasks?.length < 1 ? <div className="flex flex-col justify-center items-center gap-5  py-10">
+                            <p className="text-8xl"><TbMoodEmpty></TbMoodEmpty></p>
+                            <p className="text-4xl font-bold text-center">No Task Found!</p>
+                        </div> : ''
                         }
                     </div>
                 </div>

@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 import { MdTask } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const TaskCard = ({ task }) => {
     const { creator, deadline, description, priority, title, type, _id } = task;
-    const navigate = useNavigate()
     return (
 
         <div className="card w-full max-w-[390px] mx-auto bg-base-100 shadow-xl">
