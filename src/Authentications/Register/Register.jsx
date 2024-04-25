@@ -18,6 +18,7 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { GiArchiveRegister } from "react-icons/gi";
 import { FcGoogle } from "react-icons/fc";
 import registerImg from '../../assets/register.jpg'
+import toast from "react-hot-toast";
 // import React from 'react';
 
 const Register = () => {
@@ -61,12 +62,7 @@ const Register = () => {
                         axiosPublic.post('/users', userInfo)
                             .then(res => {
                                 if (res.data.insertedId) {
-                                    Swal.fire({
-                                        icon: "success",
-                                        title: "User Created Successfully",
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
+                                    toast.success("Registered in successfully")
                                     reset();
                                     navigate('/')
                                 }
