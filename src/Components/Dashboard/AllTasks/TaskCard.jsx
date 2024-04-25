@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import { MdTask } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
 const TaskCard = ({ task }) => {
     const { creator, deadline, description, priority, title, type, _id } = task;
+    const navigate = useNavigate()
     return (
 
         <div className="card w-full max-w-[390px] mx-auto bg-base-100 shadow-xl">
@@ -15,8 +17,10 @@ const TaskCard = ({ task }) => {
                 <p>{description}</p>
                 <p>Deadline: {deadline}</p>
                 <div className="card-actions justify-start">
-                    <button className="btn btn-sm text-sm border-blue-500 border-2 rounded-sm hover:rounded-lg hover:border-blue-500 hover:bg-transparent transition-all duration-300">Details</button>
-                    
+                    <Link to={`/dashboard/taskDetails/${_id}`}>
+                        <button className="btn btn-sm text-sm border-blue-500 border-2 rounded-sm hover:rounded-lg hover:border-blue-500 hover:bg-transparent transition-all duration-300">Details</button>
+                    </Link>
+
                 </div>
             </div>
         </div>
