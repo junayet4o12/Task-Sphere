@@ -9,7 +9,7 @@ import Navbar from "../Navbar/Navbar";
 import { useEffect, useState } from "react";
 const Dashboard = () => {
     const { user } = useAuth()
-    const screenWidth = window.innerWidth <= 640;
+    const screenWidth = window.innerWidth <= 768;
     const [longSideBar, setLongSideBar] = useState(!screenWidth)
     const NavStyle = 'navLinkStyle flex items-center gap-2 overflow-hidden whitespace-no-wrap'
     const NavTextStyle = `${longSideBar ? 'block' : 'hidden'} whitespace-no-wrap`
@@ -46,7 +46,7 @@ const Dashboard = () => {
 
                     </ul>
                 </div>
-                <div className="flex-grow p-5">
+                <div className="flex-grow">
                     <Outlet></Outlet>
                 </div>
             </div>
