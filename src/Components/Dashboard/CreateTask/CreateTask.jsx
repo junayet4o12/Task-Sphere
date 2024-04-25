@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
-
+ 
 const CreateTask = () => {
     const { user } = useAuth()
     const axiosPublic = useAxiosPublic()
@@ -45,7 +45,7 @@ const CreateTask = () => {
             })
 
     }
-    const targetaudience = [
+    const priorities = [
         'Low',
         'Medium',
         'High'
@@ -86,7 +86,7 @@ const CreateTask = () => {
                                 <select required name="priority" {...register("priority", { required: true })} className={`${inputStyle} select select-info`} type="text" placeholder="Priority" >
                                     <option disabled selected value='' >Select Priority</option>
                                     {
-                                        targetaudience?.map((audience) => <option key={audience} value={audience}> {audience}</option>)
+                                        priorities?.map((priority) => <option key={priority} value={priority}> {priority}</option>)
                                     }
                                 </select>
                                 {errors.priority && <span className='text-red-500 text-sm'>Priority is required</span>}
