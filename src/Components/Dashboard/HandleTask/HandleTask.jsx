@@ -24,9 +24,9 @@ const HandleTask = () => {
     if (taskLoading) {
         return ''
     }
-    const todotasks = tasks?.filter(task => task?.type === 'todo')
+    const todoTasks = tasks?.filter(task => task?.type === 'todo')
     const onGoingTasks = tasks?.filter(task => task?.type === 'ongoing')
-    const completedtasks = tasks?.filter(task => task?.type === 'completed')
+    const completedTasks = tasks?.filter(task => task?.type === 'completed')
     const handleRegister = (e, id) => {
         e?.dataTransfer?.setData('todoId', id)
         console.log(id, e?.dataTransfer?.setData('todoId', id));
@@ -89,7 +89,7 @@ const HandleTask = () => {
                     <hr className="border-black" />
                     <div className="space-y-5 px-2 py-2 ">
                         {
-                            todotasks?.map((task, idx) => <div key={task?._id} draggable
+                            todoTasks?.map((task, idx) => <div key={task?._id} draggable
                                 onDragStart={(e) => handleRegister(e, task?._id)} className="transition-all duration-200  p-2 text-sm font-bold ease-in-out uppercase bg-transparent border-blue-400 border-2 rounded-lg  hover:bg-transparent hover:rounded-3xl hover:border-blue-400 ">
                                 <div className="flex justify-between px-2  ">
                                     <button onClick={() => handleEdit(task?._id)} title="Edit Task" className="text-xl font-bold mb-1 hover:text-blue-500 btn btn-xs  bg-transparent hover:bg-transparent border-none hover:border-none"><LuClipboardEdit></LuClipboardEdit></button>
@@ -111,7 +111,7 @@ const HandleTask = () => {
                             </div>)
                         }
                         {
-                            !todotasks?.length < 1 ? '' : <div className="flex flex-col justify-center items-center gap-5  py-10">
+                            !todoTasks?.length < 1 ? '' : <div className="flex flex-col justify-center items-center gap-5  py-10">
                                 <p className="text-8xl"><TbMoodEmpty></TbMoodEmpty></p>
                                 <p className="text-4xl font-bold text-center">No Data Found</p>
                             </div>
@@ -167,7 +167,7 @@ const HandleTask = () => {
                     <div
                         className="space-y-5 px-2 py-2 min-h-full">
                         {
-                            completedtasks?.map((task, idx) => <div className="transition-all duration-200  p-2 text-sm font-bold ease-in-out uppercase bg-transparent border-blue-400 border-2 rounded-lg  hover:bg-transparent hover:rounded-3xl hover:border-blue-400 " key={task?._id}>
+                            completedTasks?.map((task, idx) => <div className="transition-all duration-200  p-2 text-sm font-bold ease-in-out uppercase bg-transparent border-blue-400 border-2 rounded-lg  hover:bg-transparent hover:rounded-3xl hover:border-blue-400 " key={task?._id}>
                                 <div className="flex justify-between px-2  ">
                                     <button onClick={() => handleEdit(task?._id)} title="Edit Task" className="text-xl font-bold mb-1 hover:text-blue-500 btn btn-xs  bg-transparent hover:bg-transparent border-none hover:border-none"><LuClipboardEdit></LuClipboardEdit></button>
                                     <button onClick={() => handleDelete(task?._id)} title="Delete Task" className="text-base font-bold mb-1  border-[1.5px]  px-2 rounded-sm border-black hover:rounded-md hover:border-black  transition-all duration-200 btn btn-xs hover:bg-transparent" >X</button>
