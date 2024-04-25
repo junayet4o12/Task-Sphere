@@ -8,7 +8,10 @@ const TaskCard = ({ task }) => {
 
         <div className="card w-full max-w-[390px] mx-auto bg-base-100 shadow-xl">
             <figure className="flex justify-start items-start pl-5">
-                <h2 className="text-7xl w-full text-blue-700"><MdTask /></h2>
+                <h2 className="text-7xl w-full text-blue-700 flex justify-between items-center">
+                    <span><MdTask /></span>
+                    <span className={`${type==='completed' ? 'block' : 'hidden'}`}><div className="badge badge-primary badge-outline">Completed</div></span>
+                </h2>
             </figure>
             <div className="card-body">
                 <h2 className="card-title">
