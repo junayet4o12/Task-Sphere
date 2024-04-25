@@ -14,7 +14,7 @@ const EditTask = () => {
     const [err, seterr] = useState('')
     const inputStyle = 'w-full    bg-gray-50 p-3 px-10 rounded-lg input input-bordered input-info'
     const { register, handleSubmit, watch, reset, formState: { errors }, } = useForm()
-    const { data: singletask, isLoading: singletaskLoading, refetch } = useQuery({
+    const { data: singleTask, isLoading: singletaskLoading, refetch } = useQuery({
         queryKey: [`task ${id}`, id],
         queryFn: async () => {
 
@@ -56,7 +56,7 @@ const EditTask = () => {
             })
 
     }
-    const targetaudience = [
+    const priorities = [
         'Low',
         'Medium',
         'High'
@@ -78,7 +78,7 @@ const EditTask = () => {
                         <div className="w-full max-w-[550px] ">
                             <p className="px-2 pb-1 text-sm">Task Title</p>
                             <div className="relative  w-full ">
-                                <input defaultValue={singletask?.title} required name="title" {...register("title", { required: true })} className={inputStyle} type="text" placeholder="Title" />
+                                <input defaultValue={singleTask?.title} required name="title" {...register("title", { required: true })} className={inputStyle} type="text" placeholder="Title" />
                                 {errors.title && <span className='text-red-500 text-sm'>Title is required</span>}
 
                             </div>
@@ -86,7 +86,7 @@ const EditTask = () => {
                         <div className="w-full max-w-[550px]">
                             <p className="px-2 pb-1 text-sm">Task deadline</p>
                             <div className="relative w-full">
-                                <input defaultValue={singletask?.deadline} required name="deadline" {...register("deadline", { required: true })} className={inputStyle} type="date" placeholder="Deadline" />
+                                <input defaultValue={singleTask?.deadline} required name="deadline" {...register("deadline", { required: true })} className={inputStyle} type="date" placeholder="Deadline" />
                                 {errors.deadline && <span className='text-red-500 text-sm'>Deadline is required</span>}
 
                             </div>
@@ -94,10 +94,10 @@ const EditTask = () => {
                         <div className="w-full max-w-[550px]">
                             <p className="px-2 pb-1 text-sm">Task priority</p>
                             <div className="relative w-full">
-                                <select defaultValue={singletask?.priority} required name="priority" {...register("priority", { required: true })} className={`${inputStyle} select select-info`} type="text" placeholder="Priority" >
+                                <select defaultValue={singleTask?.priority} required name="priority" {...register("priority", { required: true })} className={`${inputStyle} select select-info`} type="text" placeholder="Priority" >
                                     <option disabled selected value='' >Select Priority</option>
                                     {
-                                        targetaudience?.map((audience) => <option key={audience} value={audience}> {audience}</option>)
+                                        priorities?.map((priority) => <option key={priority} value={priority}> {priority}</option>)
                                     }
                                 </select>
                                 {errors.priority && <span className='text-red-500 text-sm'>Priority is required</span>}
@@ -108,7 +108,7 @@ const EditTask = () => {
                             <p className="px-2 pb-1 text-sm">Task Description</p>
                             <div className="relative w-full">
                                 <textarea required
-                                    defaultValue={singletask?.description} name="description" {...register("description", { required: true })} className={`${inputStyle} h-40`} type="text" placeholder="Description"></textarea>
+                                    defaultValue={singleTask?.description} name="description" {...register("description", { required: true })} className={`${inputStyle} h-40`} type="text" placeholder="Description"></textarea>
                                 {errors.description && <span className='text-red-500 text-sm'>Description is required</span>}
 
                             </div>
