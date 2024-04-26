@@ -7,8 +7,8 @@ const Profile = () => {
     return (
         <div className="py-14 px-3">
             <div className="flex flex-col justify-center items-center border-2 w-full max-w-[500px] mx-auto p-6 rounded-lg border-blue-400">
-                <div className="w-40 h-40 rounded-full overflow-hidden">
-                    <img className="w-full h-full" src={user?.photoURL} alt="" />
+                <div className="w-32 h-32 rounded-full overflow-hidden">
+                    <img className="w-full h-full object-cover" src={user?.photoURL} alt="" />
 
 
                 </div>

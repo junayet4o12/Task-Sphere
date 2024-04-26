@@ -44,14 +44,12 @@ const Register = () => {
         const imgurl = res?.data?.data?.display_url
         createUser(data.email, data.password)
             .then(res => {
-                console.log(res.user);
                 updateProfile(auth.currentUser, {
                     displayName: data.name,
                     photoURL: imgurl
 
                 })
                     .then(() => {
-                        console.log('user progile info updated');
                         const userInfo = {
                             name: data.name,
                             email: data.email,
@@ -70,11 +68,9 @@ const Register = () => {
 
                     })
                     .catch(err => {
-                        console.log(err)
                     })
             })
             .catch(err => {
-                console.log(err)
                 seterr(err?.message)
             })
     }
@@ -118,7 +114,7 @@ const Register = () => {
                             <div>
                                 <p className="px-2 pb-1 text-sm">Choose your profile pic</p>
                                 <div className="relative w-full sm:w-[450px]">
-                                    <input name="image" {...register("image", { required: true })} className={inputStyle} type="file" placeholder="Image" />
+                                    <input name="image" {...register("image", { required: true })} className={`w-full max-w-[280px] sm:max-w-full  sm:w-[450px]  bg-gray-50  p-2 px-10 rounded-lg input input-bordered input-info`} type="file" placeholder="Image" />
                                     {errors.image && <span className='text-red-500'>Image is required</span>}
                                     <p className='text-xl absolute top-3.5 left-3 '><MdOutlineInsertPhoto></MdOutlineInsertPhoto ></p>
                                 </div>
@@ -144,7 +140,7 @@ const Register = () => {
                                             pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/
                                         })} className={inputStyle} placeholder="password" />
                                     <p className='text-xl absolute top-3 left-3 '><RiLockPasswordLine></RiLockPasswordLine></p>
-                                    <p onClick={() => (setshowpass(!showpass))} className={`absolute top-2 right-0 mr-2 cursor-pointer text-lg  p-1`}>{showpass ? <BsEye></BsEye> : <BsEyeSlash></BsEyeSlash>}</p>
+                                    <p onClick={() => (setshowpass(!showpass))} className={`absolute top-2.5 right-0 mr-2 cursor-pointer text-lg  p-1`}>{showpass ? <BsEye></BsEye> : <BsEyeSlash></BsEyeSlash>}</p>
                                     {errors?.password?.type === 'required' && <span className='text-red-500'>Password invalid</span>}
                                     {errors?.password?.type === 'minLength' && <span className='text-red-500'>Password must be minimum 8 charecters</span>}
                                     {errors?.password?.type === 'maxLength' && <span className='text-red-500'>Password must be maximum 20 charecters</span>}

@@ -7,7 +7,7 @@ const Footer = () => {
             <footer className="footer p-10 bg-neutral text-neutral-content">
                 <aside>
                     <h2 className="text-xl font-bold uppercase text-white">Task <br /> <span className="ml-5 text-gray-400">Sphere</span></h2>
-                    <p>Copyright © 2023 - All right reserved by Task Sphere</p>
+                    <p>Copyright © 202 - All right reserved by Task Sphere</p>
                 </aside>
                 <nav>
                     <header className="footer-title">Social</header>

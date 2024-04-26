@@ -1,15 +1,19 @@
 // import React from 'react';
 
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
     const { user, logOut } = useAuth()
+    const navigate = useNavigate()
+    const handleHome = () => {
+        navigate('/')
+    }
     const navli = <>
         <li><NavLink className='navstyle2' to={'/'}>Home</NavLink></li>
         {
             user ? <>
-                <li><NavLink className='navstyle2' to={'/dashboard'}>Dashboard</NavLink></li>
+                <li><NavLink className='navstyle2' to={'/dashboard/allTasks'}>Dashboard</NavLink></li>
                 <li><NavLink className='navstyle2' to={'/profile'}>Profile</NavLink></li>
             </> : ''
         }
@@ -29,7 +33,7 @@ const Navbar = () => {
                             {navli}
                         </ul>
                     </div>
-                    <h2 className="text-xl font-bold uppercase">Task <br /> <span className="ml-5 text-[#2c3e50]">Sphere</span></h2>
+                    <h2 onClick={handleHome} className="text-xl font-bold uppercase cursor-pointer">Task <br /> <span className="ml-5 text-[#2c3e50]">Sphere</span></h2>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 gap-1 navstyle">

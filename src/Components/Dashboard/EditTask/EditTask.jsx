@@ -37,10 +37,8 @@ const EditTask = () => {
             priority,
             description
         }
-        console.log(task);
         axiosPublic.put(`/singletaskupdate/${id}`, task)
             .then(res => {
-                console.log(res?.data);
                 if (res?.data?.modifiedCount > 0) {
                     Swal.fire({
                         icon: "success",
@@ -52,7 +50,6 @@ const EditTask = () => {
                 }
             })
             .catch(err => {
-                console.log(err);
             })
 
     }

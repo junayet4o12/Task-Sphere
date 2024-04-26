@@ -9,7 +9,6 @@ const TaskDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate()
     const axiosPublic = useAxiosPublic()
-    console.log(id);
     const { data: singleTask, isLoading: singleTaskLoading, refetch } = useQuery({
         queryKey: [`single task details ${id}`, id],
         queryFn: async () => {
@@ -21,7 +20,6 @@ const TaskDetails = () => {
     if (singleTaskLoading) {
         return <Loading />
     }
-    console.log(singleTask?.type);
 
     const handleDelete = () => {
         Swal.fire({
@@ -36,7 +34,6 @@ const TaskDetails = () => {
             if (result.isConfirmed) {
                 axiosPublic.delete(`/tasks/${id}`)
                     .then(res => {
-                        console.log(res?.data);
                         navigate(`/dashboard/allTasks`)
                         refetch()
                     })

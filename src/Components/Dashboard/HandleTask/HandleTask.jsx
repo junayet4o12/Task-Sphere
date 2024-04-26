@@ -19,22 +19,25 @@ const HandleTask = () => {
         }
     })
     if (taskLoading) {
-        return <Loading/>
+        return <Loading />
     }
     const todoTasks = tasks?.filter(task => task?.type === 'todo') || []
     const onGoingTasks = tasks?.filter(task => task?.type === 'ongoing') || []
     const completedTasks = tasks?.filter(task => task?.type === 'completed') || []
     return (
         <div>
-            <h2 className="text-3xl font-bold text-center py-7 uppercase">Manage Task</h2>
             <div className="grid grid-cols-3 gap-y-7">
 
-                <ToDoList todoTasks={todoTasks} refetch={refetch} />
+                <div className="max-h-[calc(100vh-92px)] overflow-y-auto scrollbar-custom">
+                    <ToDoList todoTasks={todoTasks} refetch={refetch} />
+                </div>
 
-
-                <OnGoingList onGoingTasks={onGoingTasks} refetch={refetch} />
-
-                <CompletedTaskList completedTasks={completedTasks} refetch={refetch} />
+                <div className="max-h-[calc(100vh-92px)] overflow-y-auto scrollbar-custom">
+                    <OnGoingList onGoingTasks={onGoingTasks} refetch={refetch} />
+                </div>
+                <div className="max-h-[calc(100vh-92px)] overflow-y-auto scrollbar-custom">
+                    <CompletedTaskList completedTasks={completedTasks} refetch={refetch} />
+                </div>
             </div>
         </div>
     );

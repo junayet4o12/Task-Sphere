@@ -7,3 +7,67 @@
 *{
     font-family: 'Lato', sans-serif;
 }
+.navstyle li {
+    width: max-content;
+}
+
+.navstyle .navstyle2 {
+    text-transform: uppercase;
+    font-weight: 400;
+    overflow: hidden;
+    height: 100%;
+    border-radius: 10px;
+    padding: 8px 20px;
+    border: 2px solid transparent;
+    transition: border-radius 0.5s ease !important;
+
+}
+
+.navstyle .navstyle2:hover {
+
+    background: #1527ef1a;
+    border-radius: 20px;
+    text-decoration: underline;
+
+}
+
+.navstyle li .active {
+    background: transparent !important;
+    border: 2px solid #3498db;
+    border-radius: 20px;
+    color: black !important;
+    font-weight: 700;
+
+    transition: border 0.5s ease !important;
+}
+
+.navLinkStyle {
+    text-transform: uppercase;
+    font-weight: 400;
+    overflow: hidden;
+    height: 100%;
+    border-radius: 10px;
+    padding: 8px 5px;
+    border: 2px solid transparent;
+    transition: border-radius 0.5s ease !important;
+}
+
+.navLinkStyle:hover {
+    background: #23232353;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    text-decoration: underline;
+}
+
+.navLinkParent .active {
+    background: #23232353 !important;
+    border: 2px solid white;
+    border-radius: 20px;
+    font-weight: 700;
+    transition: border 0.5s ease !important; 
+    overflow: hidden;
+}
+.scrollbar-custom {
+    scrollbar-width: thin; /* for Firefox */
+    scrollbar-color: #5c86c8 #ffffff; /* scrollbar color and track color */
+  }

@@ -26,10 +26,8 @@ const CreateTask = () => {
             description,
             type: 'todo'
         }
-        console.log(task);
         axiosPublic.post('/tasks', task)
             .then(res => {
-                console.log(res?.data);
                 if (res?.data?.insertedId) {
                     Swal.fire({
                         icon: "success",
@@ -41,7 +39,6 @@ const CreateTask = () => {
                 }
             })
             .catch(err => {
-                console.log(err);
             })
 
     }

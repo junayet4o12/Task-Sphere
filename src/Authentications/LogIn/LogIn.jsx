@@ -30,7 +30,6 @@ const LogIn = () => {
         const password = data?.password;
         loginUser(email, password)
             .then(res => {
-                console.log(res);
                 Swal.fire({
                     title: "Logged in Successfully..",
                     showClass: {
@@ -51,7 +50,6 @@ const LogIn = () => {
                 navigate('/', { replace: true })
             })
             .catch(err => {
-                console.log(err)
                 seterr(err?.message)
             })
 
@@ -103,7 +101,7 @@ const LogIn = () => {
                                             required: true
                                         })} className={inputStyle} placeholder="password" />
                                     <p className='text-xl absolute top-3 left-3 '><RiLockPasswordLine></RiLockPasswordLine></p>
-                                    <p onClick={() => (setshowpass(!showpass))} className={`absolute top-2 right-0 mr-2 cursor-pointer text-lg  p-1`}>{showpass ? <AiOutlineEye></AiOutlineEye> : <AiOutlineEyeInvisible></AiOutlineEyeInvisible>}</p>
+                                    <p onClick={() => (setshowpass(!showpass))} className={`absolute top-2.5 right-0 mr-2 cursor-pointer text-lg  p-1`}>{showpass ? <AiOutlineEye></AiOutlineEye> : <AiOutlineEyeInvisible></AiOutlineEyeInvisible>}</p>
                                     {errors?.password?.type === 'required' && <span className='text-red-500 text-sm'>Password invalid</span>}
                                     <span className='text-red-500 text-sm font-medium'>{err}</span>
 
