@@ -29,7 +29,7 @@ const OnGoingList = ({ onGoingTasks, refetch }) => {
         <div className="flex-1 border-r border-black  ">
             <p className={taskHeaderStyle}>on going</p>
             <hr className="border-black" />
-            <div className="space-y-5 px-0.5 py-2 relative">
+            <div className="space-y-5 px-0.5 sm:px-2 py-2 relative">
                 <div
                 className='sticky top-[92px]'
                 onDragOver={(e) => handleDragOver(e)}

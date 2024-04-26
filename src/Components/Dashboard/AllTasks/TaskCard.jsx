@@ -9,7 +9,9 @@ const TaskCard = ({ task }) => {
             <figure className="flex justify-start items-start pl-5">
                 <h2 className="text-7xl w-full text-blue-700 flex justify-between items-center">
                     <span><MdTask /></span>
-                    <span className={`${type==='completed' ? 'block' : 'hidden'}`}><div className="badge badge-primary badge-outline">Completed</div></span>
+                    <span className={`${type==='completed' ? 'block' : 'hidden'}`}><div className="badge badge-accent badge-outline">Completed</div></span>
+                    <span className={`${type==='ongoing' ? 'block' : 'hidden'}`}><div className="badge badge-primary badge-outline">On Going</div></span>
+                    <span className={`${type==='todo' ? 'block' : 'hidden'}`}><div className="badge badge-secondary badge-outline">To Do</div></span>
                 </h2>
             </figure>
             <div className="card-body">

@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import ClientCard from "./ClientCard";
+import Loading from "../Loading/Loading";
 
 const Clients = () => {
     const axiosPublic = useAxiosPublic()
@@ -15,7 +16,7 @@ const Clients = () => {
         }
     })
     if (clientsLoading) {
-        return ''
+        return <Loading/>
     }
     return (
         <div className="py-7 px-3">

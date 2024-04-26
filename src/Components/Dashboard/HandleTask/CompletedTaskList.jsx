@@ -28,7 +28,7 @@ const CompletedTaskList = ({ completedTasks, refetch }) => {
         <div className="flex-1 border-r border-black  ">
             <p className={taskHeaderStyle}>Completed</p>
             <hr className="border-black" />
-            <div className="space-y-5 px-0.5 py-2 ">
+            <div className="space-y-5 px-0.5 sm:px-2  py-2 ">
             <div
             className='sticky top-[92px]'
                 onDragOver={(e) => handleDragOver(e)}

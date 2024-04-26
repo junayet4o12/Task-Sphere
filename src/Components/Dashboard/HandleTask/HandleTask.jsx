@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import ToDoList from "./ToDoList";
 import OnGoingList from "./OnGoingList";
 import CompletedTaskList from "./CompletedTaskList";
+import Loading from "../../Loading/Loading";
 const HandleTask = () => {
     const { user } = useAuth()
     const axiosPublic = useAxiosPublic()
@@ -18,7 +19,7 @@ const HandleTask = () => {
         }
     })
     if (taskLoading) {
-        return ''
+        return <Loading/>
     }
     const todoTasks = tasks?.filter(task => task?.type === 'todo') || []
     const onGoingTasks = tasks?.filter(task => task?.type === 'ongoing') || []
