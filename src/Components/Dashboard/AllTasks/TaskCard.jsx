@@ -20,6 +20,7 @@ const TaskCard = ({ task }) => {
                 </h2>
                 <p>{description}</p>
                 <p>Deadline: {deadline}</p>
+                <p>Priority: {priority}</p>
                 <div className="card-actions justify-start">
                     <Link to={`/dashboard/taskDetails/${_id}`}>
                         <button className="btn btn-sm text-sm border-blue-500 border-2 rounded-sm hover:rounded-lg hover:border-blue-500 hover:bg-transparent transition-all duration-300">Details</button>
